@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <%- include('includes/head', { title: '노원거인 일기장' }) %>
+    </head>
+    <body>
+      <div class="search_box">
+        <span style="display: flex; justify-content: flex-end; padding: 50px;">
+            <form action="/" method="POST">
+                <input type="text" id="keyword" name="keyword" placeholder="검색">
+                <input type="image" src="./svg/search.svg" alt="Submit Form">
+            </form>
+        </span>
+      </div>
+        <%- include('includes/header', { currentUrl: '/' }) %>
+        <main class="container" len="14342">
+            <%- include('includes/profile') %>
+            <div class="justify-content-center">
+              <div class="row" style="justify-content: space-evenly;">
+                <h3 class="pb-4 mb-4 fst-italic border-bottom" len="33" lang="ko" >인기 게시물</h3>
+                
+                  <%- include('includes/post-lists', { post: post }) %>
+                  <%- include('includes/post-lists',{ post: post2 }) %>
+              </div>
+            </div>   
+            <div class="row g-5" len="11431">
+                <div class="col-md-8" len="7809">
+                    <h3 class="pb-4 mb-4 fst-italic border-bottom" len="33" lang="ko" >개발 일지</h3>
+                    <article class="blog-post" len="4627">
+                        <h2 class="display-5 link-body-emphasis mb-1" len="16" lang="ko">起  .기</h2>
+                            <p class="blog-post-meta" len="39" lang="ko" >2023년 6월 10일, <a href="https://developer.mozilla.org/ko/docs/Learn/Server-side/Express_Nodejs/Introduction" len="4">학습 링크</a></p>
+                            <p len="184"><font lang="ko" >서버 공부를 해본적이 없어서 node로 서버 구축 및 모듈 이해하는데 학습</font></p>
+                        <hr len="0">
+                            <p len="287">dom명령어에 익숙하지가 않아 태그 안에 script와 같은 기능을 할 수 있는 ejs엔진을 쓰는걸 선택했습니다. <font lang="ko">페이지 간 이동은 라우트를 이용하여 get, post요청을 원할하게 처리합니다. </font><font lang="ko"></font></p>
+                        <h2 len="11" lang="ko" >기본 app.js 코드</h2>
+                            <p len="40" lang="ko">듣고 있는 인강을 참고하였습니다.</p>
+                            <p len="287"><font lang="ko">
+                            <code>
+                              const express = require("express"); <br>
+                              
+                              const bodyParser = require("body-parser"); <br>
+                              const request = require("request"); <br>
+
+                              const app = express(); <br>
+
+                              app.use(express.static("public")); <br>
+                              app.use(bodyParser.urlencoded({extended: true})); <br>
+
+                              app.get("/", function(req, res) { <br>
+                                res.send("Server is up and running."); <br>
+                              }) <br>
+
+
+                              app.listen(3000, function() { <br>
+                                console.log("Server is running on port 3000."); <br>
+                              }) <br>
+                            </code>
+                            <br>
+                    </font><font lang="ko">dom 명령어로 해당 태그를 조작하는 대신에 bodyParser 미들웨어를 사용하여 해당 값에 접근 및 조작하게끔 사용하였습니다.</font></p>
+                    <hr>
+                  <h2 class="display-5 link-body-emphasis mb-1" len="16" lang="ko">承  .승</h2>
+                            <p class="blog-post-meta" len="39" lang="ko" >2023년 6월 12일, <a href="https://getbootstrap.com" len="4">학습 링크</a></p>
+                            <p len="184"><font lang="ko" >사이트 외관은 기본적으로 부트스트랩 문서를 참고하였습니다.</font></p>
+                  <hr>
+                  <p len="28" lang="ko">본 사이트에 들어가는 컴포넌트 목록들입니다.</p>
+                  <ol len="157">
+                    <li len="15" lang="ko">포스트를 담당하는 카드 컴포넌트</li>
+                    <li len="42" lang="ko">디자인을 지닌 버튼 컴포넌트</li>
+                    <li len="31" lang="ko">커서가 반응하는 곳을 눈에 띄게끔 설명해주는 시각적 svg 아이콘</li>
+                  </ol>
+      
+                  <h2 len="20" lang="ko">페이지마다 반복되는 중복 태그 처리</h2>
+                  <p len="194"><font lang="ko">
+                    페이지 마다 이동할떄 마다 중복되는 태그들이 있습니다. 해당 태그들은 따로 includes로 정리하여 해당 include 안에 있는 파일들과 그에 상응하는 변수 객체를 전달하였습니다. 참고링크는<br>
+                    <del><strong>원래는 code태그를 이용하여 표시하려 했지만 ejs엔진에 의해 해당 코드는 사용불가</strong></del>
+                    <br>
+                    <a href="https://juni-dev-log.tistory.com/85" len="25">학습 링크</a>
+                    에서 찾을 수 있습니다
+                  </font>.</p> 
+                </article>
+          <hr>
+                <article class="blog-post" len="1925">
+                  <h2 class="display-5 link-body-emphasis mb-1" len="16" lang="ko">轉  .전</h2>
+                            <p class="blog-post-meta" len="39" lang="ko" >2023년 6월 13일, <a href="https://rat2.tistory.com/8" len="4">학습 링크</a></p>
+                            <p len="184"><font lang="ko" >페이지 간에 데이터 조작은 mysql2모듈을 사용하였습니다.</font></p>
+                  <hr>
+                  <ol>
+                    <li>MySQL 클라이언트 가져오기</li>
+                    <code>const mysql = require('mysql2');</code>
+                    <br>
+                    <br>
+                    <li>데이터베이스와 연결</li>
+                    <code>
+                      const connection = mysql.createConnection({
+                      host: 'localhost',
+                      user: 'root',
+                      database: 'test'
+                    });
+                    </code>
+                    <br>
+                    <br>
+                    <li>간단한 쿼리</li>
+                    <code>
+                      connection.query( <br>
+                        'SELECT * FROM `table` WHERE `name` = "Page" AND `age` > 45', <br>
+                      function(err, results, fields){ <br>
+                        console.log(results); // results는 서버로부터 반환된 행들을 포함한다. <br>
+                        console.log(fields); // fields는 results에 관한 부가적인 메타데이터들을 포함한다. <br>
+                        }); <br>
+                    </code>
+                    <br>
+                    <br>
+                    <li>placeholder와 함께</li>
+                    <code>
+                      connection.query( <br>
+                        'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?', <br>
+                        ['Page', 45], <br>
+                      function(err, results){ <br>
+                        console.log(results); <br>
+                        }); <br>
+                    </code>
+                  </ol>
+                </article>
+                <hr>
+          
+                <article class="blog-post" len="798">
+                  <h2 class="display-5 link-body-emphasis mb-1" len="16" lang="ko">結  .결</h2>
+                            <p class="blog-post-meta" len="39" lang="ko" >2023년 6월 22일, <a href="#" len="4">위로 가기</a></p>
+                            <p len="184"><font lang="ko" >블로그 기능구성과 전체적인 UI는 만들었습니다.</font></p>
+                  <p len="287"><font lang="ko">다음은 기능 추가로 구현하고자 하는 기능들입니다. </font></p>
+                  <ul len="157">
+                    <li len="15" lang="ko">포스트 글 마다 댓글 기능</li>
+                    <li len="42" lang="ko">포스트 글 공유 기능</li>
+                    <li len="31" lang="ko">해당 블로그에 접속해있는 사람들끼리의 채팅 기능</li>
+                    <li len="31" lang="ko">돋보기 아이콘을 눌렀을 떄 해당 키워드를 입력하면 그 키워드와 관련된 포스트 나타나기</li>
+                  </ul>
+                  <p len="144"><font lang="ko">해당 구현하고자 하는 기능은 하나씩 25일까지 할 수 있으면 하고싶은 기능들입니다.</font><font lang="ko">전부는 못하더라도 여기서 한, 두개 정도는 구현하면 좋을 것 같습니다.</font></p>
+                </article>
+              </div>
+          
+              
+            </div>
+          
+        </main>
+    </body>
+</html>

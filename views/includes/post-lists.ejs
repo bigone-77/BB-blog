@@ -1,0 +1,40 @@
+<div class="col-md-4" len="1151">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" len="1027">
+        <div>
+            <% if (post.filename) { %>
+                <img src="picture/<%= post.filename %>" style="width:100%; height:auto;">
+            <% } else { %>
+                <div class="spinner-border text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p>이미지가 없습니다.</p>
+            <% } %>
+        </div>          
+        <div class="col p-4 d-flex flex-column position-static" len="530"> 
+            <strong class="d-inline-block mb-2 text-primary-emphasis" len="5" lang="ko"><%= post.category_name %></strong>
+            <h3 class="mb-0" len="13" lang="ko"><%= post.title %></h3>
+            <div class="mb-1 text-body-secondary" len="6" lang="ko">
+                <time datetime="<%= post.date.toISOString() %>"><%= post.date.toLocaleDateString() %></time>
+            </div>
+            <p class="card-text mb-auto" len="91" lang="ko"><%= post.summary %></p>
+            <div>
+                <div class="d-grid gap-2 d-md-block">
+                    <div class="row row-cols-4">
+                        <div class="col">
+                            <button class="btn btn-primary" type="button" onclick="location.href='/<%= post.category_name %>/<%= post.id %>'">VIEW</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-success" type="button" onclick="location.href='/<%= post.category_name %>/<%= post.id %>/edit'">EDIT</button>
+                        </div>
+                        <div class="col">
+                            <form action="/<%= post.category_name %>/<%= post.id %>/delete" method="POST">
+                                <button class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

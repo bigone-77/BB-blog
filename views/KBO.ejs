@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head', { title: 'KBO' }) %>
+</head>
+<body>
+    <%- include('includes/header', { currentUrl: '/KBO' }) %>
+    <div class="row" style="margin-left: 10px; margin-right: 10px;">
+        <h1 class="display-4 fst-italic" lang="ko"> 야구 좋아하는 노원 거인 포스팅</h1>
+        <hr>
+            <% for (const post of posts) { %>
+                <%- include('includes/post-lists', { post: post }) %>
+            <% } %>
+    </div>
+</body>
+</html>

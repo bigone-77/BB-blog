@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/head', { title: 'MLB' }) %>
+</head>
+
+<body>
+    <%- include('includes/header', { currentUrl: '/MLB' }) %>
+    <main id="post-detail" style="margin-left: 100px;">
+        <h1><%= post.title %></h1>
+        <section id="post-meta">
+            <address><a href="mailto:taeill012gmailcom@skuniv.ac.kr">노원거인</a></address> |
+            <time datetime="<%= post.date %>"><%= post.humanReadableDate %></time>
+        </section>
+        <hr>
+        <section>
+            <p id="body"><%= post.body %></p>
+            <img src="/picture/<%= post.filename %>" alt="해당 사진 안보이니 ?">
+        </section>
+        <hr>
+        <div>
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div><img src="../svg/chat-left-dots-fill.svg" style="width:30px;"></div> 
+                <span style="padding-left: 10px;"><%= comments.length %></span>
+            </button>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <% for (const comment of comments) { %>
+                        <%- include('includes/comment', { comment: comment }) %>
+                    <% } %>
+                    <form action="/<%= post.category_id %>/<%= post.id %>/comment" method="POST">
+                        <div class="form-control">
+                            <input id="content" name="content" placeholder="댓글을 입력해주세요"></input>
+                            <button class="btn btn-outline-primary">등록</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="container" onclick="location.href='#';" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; cursor: pointer">
+                <img src="../svg/chevron-bar-up.svg" style="width:30px">맨 위로
+            </div>
+        </div>
+    </main>
+
+    <style>
+        #all-posts {
+            text-align: center;
+        }
+
+        #posts-list {
+            margin: 3rem auto;
+            max-width: 40rem;
+        }
+
+        .post-item {
+            margin: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: rgb(220, 204, 252);
+        }
+
+        .post-item h2,
+        .post-item p {
+            margin: 0.5rem 0;
+        }
+
+        .post-item-author {
+            font-style: italic;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .post-actions .btn-alt {
+            padding: 0;
+        }
+
+        #post-meta {
+            color: rgb(156, 149, 149);
+        }
+
+        #post-meta address {
+            display: inline;
+        }
+
+        #post-meta time {
+            font-style: italic;
+        }
+
+        #body {
+            white-space: pre-wrap;
+        }
+    </style>
+</body>
+
+</html>

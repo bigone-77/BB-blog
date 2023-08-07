@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('includes/head', { title: 'ETC' }) %>
+</head>
+<body>
+    <%- include('includes/header', { currentUrl: '/ETC' }) %>
+    <% for (const keyword of keywords) { %>
+        <%- include('includes/post-lists', { post: keyword }) %>
+    <% } %>
+    <p>왜 아무것도 안뜨노</p>
+</body>
+</html>

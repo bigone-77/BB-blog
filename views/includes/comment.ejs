@@ -1,0 +1,20 @@
+<div class="d-flex text-body-secondary">
+    <p class="mb-0 small lh-sm" >
+        <strong class="d-block text-gray-dark">
+            <time datetime="<%= comment.comment_date.toISOString() %>"><%= comment.comment_date.toLocaleDateString('ko-KR',{ 
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                }) %>
+            </time>
+            <button type="button" class="btn btn-outline-danger">Delete</button>    
+        </strong>
+        
+        <font>
+            <font lang="ko"></font><font lang="ko"><%= comment.comment_content%></font>
+        </font>
+    </p>
+</div>
